@@ -6,14 +6,14 @@
     $gender=filter_input(INPUT_POST, "gender");
     $age=filter_input(INPUT_POST, "age");
     $role=filter_input(INPUT_POST, "role");
-    $response="nula";
 
     $results=$work->isWorkable($age, $role, $gender);
 
     var_dump($age);
     var_dump($role);
     var_dump($gender);
-    if ($role=="digger") {
+    var_dump($results);
+   /* if ($role=="digger") {
         $roleoutput="kopáč";
     }
     elseif ($role=="IT") {
@@ -25,7 +25,7 @@
 
     if (!$results || (empty($age) || empty($role) || empty($gender))) {
         $response="To nestačí";
-    }
+    } 
     elseif ($results) { 
         if (empty($name) && empty($surname)) {
             $response=sprintf("Pro %s je povolání %s vhodné.", $name, $roleoutput);
@@ -38,7 +38,7 @@
         }
         elseif ($results) {
             if(empty($name) && empty($surname)) {
-                $response=sprintf("Pro %s %s je povolání %s vhodné.", $roleoutput);
+                $response=sprintf("Pro %s %s je povolání %s vhodné.", $name, $roleoutput);
             }
             elseif (empty($name)) {
                 $response=sprintf("Pro %s je povolání %s vhodné.", $name, $roleoutput);
@@ -48,8 +48,16 @@
             } 
             $response=sprintf("Pro %s %s je povolání %s vhodné.", $name, $surname, $roleoutput);
         }
-        var_dump($results);
+       
+    } */
+
+    if ($results) {
+        echo "Povolání " . $role . " pro " . $name . " je vhodné ";
     }
+    else {
+        echo " Povolání " . $role . " pro " . $name . " není vhodné ";
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +68,6 @@
     <title>Šrouby od Matky</title>
 </head>
 <body> 
-    <p> <?php echo $response; ?> </p>
+    
 </body>
 </html>
