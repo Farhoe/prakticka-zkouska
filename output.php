@@ -23,15 +23,15 @@
         $roleoutput="uklízečka";
     }
 
-    if (!$results && (empty($age) && empty($role) && empty($gender))) {
+    if (!$results || (empty($age) || empty($role) || empty($gender))) {
         $response="To nestačí";
     }
-    elseif (!$results)
+    elseif ($results) { 
         if (empty($name) && empty($surname)) {
             $response=sprintf("Pro %s je povolání %s vhodné.", $name, $roleoutput);
         }
         elseif (empty($firstname)) {
-            $response=sprintf("Pro %s je povolání %s vhodné.", $roleoutput);
+            $response=sprintf("Pro %s je povolání %s vhodné.", $name, $roleoutput);
         }
         elseif (empty($surname)) {
             $response=sprintf("Pro %s není povplání %s vhodné.", $surname, $roleoutput);
@@ -49,6 +49,7 @@
             $response=sprintf("Pro %s %s je povolání %s vhodné.", $name, $surname, $roleoutput);
         }
         var_dump($results);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
